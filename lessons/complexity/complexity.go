@@ -1,6 +1,9 @@
 package complexity
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 func countFrogJumps(x, y, d int) int {
 	diff := y - x
@@ -40,4 +43,35 @@ func sortByAsc(as []int) []int {
 	sort.Sort(sort.IntSlice(sorted))
 
 	return sorted
+}
+
+func findMinimalDifferenceOfSplitedTapes(as []int) int {
+	original := sum(as)
+	var min int
+	for i := range as {
+		if i == 0 {
+			continue
+		}
+
+		left := as[:i]
+		diff := int(math.Abs(float64(original - 2*sum(left))))
+		if i == 1 {
+			min = diff
+			continue
+		}
+		if diff < min {
+			min = diff
+		}
+	}
+
+	return min
+}
+
+func sum(as []int) int {
+	var sum int
+	for _, a := range as {
+		sum += a
+	}
+
+	return sum
 }
