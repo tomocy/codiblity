@@ -57,3 +57,35 @@ func isAbleToJumpOverRiver(ready map[int]bool) bool {
 
 	return true
 }
+
+func countAsOperations(n int, as []int) []int {
+	cnts := make([]int, n)
+	for _, a := range as {
+		if a == n+1 {
+			adjustToMax(cnts)
+			continue
+		}
+
+		cnts[a-1]++
+	}
+
+	return cnts
+}
+
+func adjustToMax(as []int) {
+	max := max(as)
+	for i := range as {
+		as[i] = max
+	}
+}
+
+func max(as []int) int {
+	var max int
+	for _, a := range as {
+		if max < a {
+			max = a
+		}
+	}
+
+	return max
+}

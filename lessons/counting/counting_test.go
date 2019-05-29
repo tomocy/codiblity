@@ -67,3 +67,36 @@ func TestTimeFrogJumpsOverRiver(t *testing.T) {
 		})
 	}
 }
+
+func TestCountAsOperations(t *testing.T) {
+	type input struct {
+		x  int
+		as []int
+	}
+	tests := []struct {
+		input    input
+		expected []int
+	}{
+		{
+			input{
+				5,
+				[]int{3, 4, 4, 6, 1, 4, 4},
+			},
+			[]int{3, 2, 2, 4, 2},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := countAsOperations(test.input.x, test.input.as)
+			if len(actual) != len(test.expected) {
+				t.Fatalf("len: got %d, but expected %d\n", len(actual), len(test.expected))
+			}
+			for i := range test.expected {
+				if actual[i] != test.expected[i] {
+					t.Errorf("at %d: got %d, but expected %d\n", i, actual[i], test.expected[i])
+				}
+			}
+		})
+	}
+}
