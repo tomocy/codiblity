@@ -36,3 +36,24 @@ func TestCountFrogJumps(t *testing.T) {
 		})
 	}
 }
+
+func TestFindMissingElement(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{
+			[]int{2, 3, 1, 5},
+			4,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := findMissingElement(test.input)
+			if actual != test.expected {
+				t.Errorf("got %d, but expected %d\n", actual, test.expected)
+			}
+		})
+	}
+}
