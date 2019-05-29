@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestFrogJump(t *testing.T) {
+func TestCountFrogJumps(t *testing.T) {
 	type input struct {
 		x, y, d int
 	}
