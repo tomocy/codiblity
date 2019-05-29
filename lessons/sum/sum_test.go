@@ -66,3 +66,24 @@ func TestFindMinimalImpactFactors(t *testing.T) {
 		})
 	}
 }
+
+func TestDetectBeginOfMinimalAverageOfSlice(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{
+			[]int{4, 2, 2, 5, 1, 5, 8},
+			1,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := detectBeginOfMinimalAverageOfSlice(test.input)
+			if actual != test.expected {
+				t.Errorf("got %d, but expected %d\n", actual, test.expected)
+			}
+		})
+	}
+}
