@@ -19,14 +19,6 @@ func isPermutation(as []int) bool {
 	return true
 }
 
-func sortByAsc(as []int) []int {
-	sorted := make([]int, len(as))
-	copy(sorted, as)
-	sort.Sort(sort.IntSlice(sorted))
-
-	return sorted
-}
-
 func timeFrogJumpOverRiver(x int, as []int) (int, error) {
 	felt := make(map[int]bool)
 	for i := 1; i <= x; i++ {
@@ -88,4 +80,37 @@ func max(as []int) int {
 	}
 
 	return max
+}
+
+func findSmallestPositiveInteger(as []int) int {
+	sorted := sortByAsc(as)
+	var prev, smallest int
+	for _, a := range sorted {
+		if a <= prev {
+			continue
+		}
+
+		if a != prev+1 {
+			smallest = prev + 1
+			break
+		}
+
+		prev = a
+	}
+	if smallest == 0 {
+		smallest = sorted[len(sorted)-1] + 1
+		if smallest <= 0 {
+			smallest = 1
+		}
+	}
+
+	return smallest
+}
+
+func sortByAsc(as []int) []int {
+	sorted := make([]int, len(as))
+	copy(sorted, as)
+	sort.Sort(sort.IntSlice(sorted))
+
+	return sorted
 }

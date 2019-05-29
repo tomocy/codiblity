@@ -100,3 +100,32 @@ func TestCountAsOperations(t *testing.T) {
 		})
 	}
 }
+
+func TestFindSmallestPositiveInteger(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{
+			[]int{1, 3, 6, 4, 1, 2},
+			5,
+		},
+		{
+			[]int{1, 2, 3},
+			4,
+		},
+		{
+			[]int{-1, -3},
+			1,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := findSmallestPositiveInteger(test.input)
+			if actual != test.expected {
+				t.Errorf("got %d, but expected %d\n", actual, test.expected)
+			}
+		})
+	}
+}
