@@ -79,3 +79,32 @@ func TestRotateCyclicly(t *testing.T) {
 		})
 	}
 }
+
+func TestFindOddOccurence(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{
+			[]int{1},
+			1,
+		},
+		{
+			[]int{9, 3, 9, 3, 9, 7, 9},
+			7,
+		},
+		{
+			[]int{1, 1, 1, 1, 1, 1, 1},
+			1,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := findOddOccurence(test.input)
+			if actual != test.expected {
+				t.Errorf("got %d, but expected %d\n", actual, test.expected)
+			}
+		})
+	}
+}
