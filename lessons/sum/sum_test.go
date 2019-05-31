@@ -87,3 +87,29 @@ func TestDetectBeginOfMinimalAverageOfSlice(t *testing.T) {
 		})
 	}
 }
+
+func TestCountDivisibles(t *testing.T) {
+	type input struct {
+		a, b, k int
+	}
+	tests := []struct {
+		input    input
+		expected int
+	}{
+		{
+			input{
+				6, 11, 2,
+			},
+			3,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%v", test.input), func(t *testing.T) {
+			actual := countDivisibles(test.input.a, test.input.b, test.input.k)
+			if actual != test.expected {
+				t.Errorf("got %d, but expected %d\n", actual, test.expected)
+			}
+		})
+	}
+}

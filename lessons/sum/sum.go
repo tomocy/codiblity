@@ -140,3 +140,14 @@ func calculateAverage(as []int) float32 {
 }
 
 var minLen = 2
+
+func countDivisibles(a, b, k int) int {
+	var divs []int
+	for i := a; i <= b; i++ {
+		if i%k == 0 {
+			divs = append(divs, i)
+		}
+	}
+
+	return len(divs)
+}
